@@ -23,10 +23,11 @@ internal object DependencyUtils {
       // We add the snapshot for users on nightlies.
       mavenRepoFromUrl("https://oss.sonatype.org/content/repositories/snapshots/")
       repositories.mavenCentral()
+      val reactNativeDirURI = reactNativeDir.toURI().toString()
       // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-      mavenRepoFromUrl("file://${reactNativeDir}/android")
+      mavenRepoFromUrl(reactNativeDirURI + "/android")
       // Android JSC is installed from npm
-      mavenRepoFromUrl("file://${reactNativeDir}/../jsc-android/dist")
+      mavenRepoFromUrl(reactNativeDirURI + "/../jsc-android/dist")
       repositories.google()
       mavenRepoFromUrl("https://www.jitpack.io")
     }
